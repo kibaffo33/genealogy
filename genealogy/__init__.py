@@ -170,6 +170,23 @@ def index():
         print(record)
     print(f"{count} records.")
 
+def orphan_records():
+    """Return a list of records which have no relatives linked."""
+
+    orphans = []
+    for file in os.listdir("."):
+        if len(file) == 11 and file.endswith(".json"):
+            count = 0
+            p = person()
+            p.load(str(file)[:-5])
+            for relative in p.data['direct_relatives']:
+                count += len(p.data['direct_relatives'][relative])
+            if count == 0:
+                orphans.append(f"{p.data['id']} - {p.data['last_names'][0]}, {' '.join(p.data['first_names'])} dob {p.data['date_of_birth']}.")
+
+    for orphan in orphans:
+        print(orphan)
+
 def find(**kwargs):
     """Scan through .json files and return ids of matches. Query first names, last names, dob, occupation, addresses."""
 
