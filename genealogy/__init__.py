@@ -15,7 +15,7 @@ template = {
     "direct_relatives": {"ascendants": [], "descendants": [], "partners": []},
     "life_events": [
         {
-            "start": None,
+            "start": str(),
             "finish": None,
             "description": "Lifetime",
             "notes": None,
@@ -61,7 +61,7 @@ class person:
     def add_event(self, **kwargs):
         self.data["life_events"].append(
             {
-                "start": kwargs.get("start", None),
+                "start": kwargs.get("start", str()),
                 "finish": kwargs.get("finish", None),
                 "description": kwargs.get("description", None),
                 "notes": kwargs.get("notes", None),
@@ -71,27 +71,7 @@ class person:
 
     def sort_life_events(self):
 
-        unsorted_events = self.data["life_events"]
-
-        dates = list()
-        for event in unsorted_events:
-            dates.append(event["start"])
-
-        dates.sort()
-
-        sorted_events = list()
-        for date in dates:
-            for event in unsorted_events:
-                if event["start"] == date:
-                    sorted_events.append(event)
-                    index = unsorted_events.index(event)
-                    unsorted_events.pop(index)
-
-        assert len(dates) == len(sorted_events), "Missing event"
-        for event in self.data["life_events"]:
-            assert event in sorted_events, "Missing event"
-
-        self.data["life_events"] = sorted_events
+        self.data["life_events"].sort(key=lambda x: dict.get(x, "start"))
 
     def print_unsourced_events(self):
         for event in self.data["life_events"]:

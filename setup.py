@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="genealogy",
-    version="0.0.1",
+    version="0.0.2",
     author="Robert Williams",
     author_email="robertedwardwilliams@me.com",
     description="A package for recording Genealogy.",
