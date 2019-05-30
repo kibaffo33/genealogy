@@ -39,7 +39,8 @@ Create a person
         {
             "start": "1900-1-1",
             "finish": null,
-            "description": "Lifetime",
+            "title": "Lifetime',
+            "description": null,
             "notes": null,
             "sources": []
         }
@@ -78,7 +79,8 @@ Load a person
         {
             "start": "1900-1-1",
             "finish": null,
-            "description": "Lifetime",
+            "title": "Lifetime',
+            "description": null,
             "notes": null,
             "sources": []
         }
@@ -97,8 +99,9 @@ Add life event
 
 >>> p.add_event(
         start="1900-1-1",
-        description="Birth",
-        notes="Town, County",
+        title="Birth",
+        description="Town, County",
+        notes="",
         sources=[
             "Birth Certificate of Joe BLOGGS dob 01/01/1900"
         ])
@@ -124,15 +127,17 @@ a1b2c3.json saved.
         {
             "start": "1900-1-1",
             "finish": null,
-            "description": "Lifetime",
+            "title": "Lifetime',
+            "description": null,
             "notes": null,
             "sources": []
         },
         {
             "start": "1900-1-1",
             "finish": null,
-            "description": "Birth",
-            "notes": "Town, County",
+            title="Birth",
+            description="Town, County",
+            notes="",
             "sources": [
                 "Birth Certificate of Joe BLOGGS dob 01/01/1900"
             ]
@@ -150,7 +155,7 @@ Edit data
 >>> p.load("a1b2c3.json")
 
 >>> p.data['life_events][0]
-{'start': None, 'finish': None, 'description': 'Lifetime', 'notes': None, 'sources': []}
+{'start': None, 'finish': None, 'title': 'Lifetime', description': None, 'notes': None, 'sources': []}
 
 >>> p.data['life_events][0]['sources'].append("Birth Certificate of Joe BLOGGS dob 01/01/1900")
 
@@ -175,7 +180,8 @@ a1b2c3.json saved.
         {
             "start": "1900-1-1",
             "finish": null,
-            "description": "Lifetime",
+            "title": "Lifetime",
+            "description": null,
             "notes": null,
             "sources": [
                 "Birth Certificate of Joe BLOGGS dob 01/01/1900"
@@ -184,8 +190,9 @@ a1b2c3.json saved.
         {
             "start": "1900-1-1",
             "finish": null,
-            "description": "Birth",
-            "notes": "Town, County",
+            title="Birth",
+            description="Town, County",
+            notes="",
             "sources": [
                 "Birth Certificate of Joe BLOGGS dob 01/01/1900"
             ]
@@ -222,7 +229,8 @@ Link parent(s) and child
         {
             "start": "1900-1-1",
             "finish": null,
-            "description": "Lifetime",
+            "title": "Lifetime",
+            "description": null,
             "notes": null,
             "sources": [
                 "Birth Certificate of Joe BLOGGS dob 01/01/1900"
@@ -231,8 +239,9 @@ Link parent(s) and child
         {
             "start": "1900-1-1",
             "finish": null,
-            "description": "Birth",
-            "notes": "Town, County",
+            title="Birth",
+            description="Town, County",
+            notes="",
             "sources": [
                 "Birth Certificate of Joe BLOGGS dob 01/01/1900"
             ]

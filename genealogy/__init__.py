@@ -17,7 +17,8 @@ template = {
         {
             "start": str(),
             "finish": None,
-            "description": "Lifetime",
+            "title": "Lifetime",
+            "description": None,
             "notes": None,
             "sources": [],
         }
@@ -63,6 +64,7 @@ class person:
             {
                 "start": kwargs.get("start", str()),
                 "finish": kwargs.get("finish", None),
+                "title": kwargs.get("title", None),
                 "description": kwargs.get("description", None),
                 "notes": kwargs.get("notes", None),
                 "sources": kwargs.get("sources", []),
@@ -76,7 +78,7 @@ class person:
     def print_unsourced_events(self):
         for event in self.data["life_events"]:
             if len(event["sources"]) == 0:
-                print(f"{event['start']} {event['description']}")
+                print(f"{event['start']} {event['title']}")
 
 
 def link_child(**kwargs):
@@ -202,7 +204,7 @@ def find(**kwargs):
         for r in records:
             for event in r["life_events"]:
                 if (
-                    event["description"].lower() == "occupation"
+                    event["title"].lower() == "occupation" or event["description"].lower() == "occupation"
                     and occupation.lower() in event["notes"].lower()
                 ):
                     results.append(r)
@@ -212,7 +214,7 @@ def find(**kwargs):
         for r in records:
             for event in r["life_events"]:
                 if (
-                    event["description"].lower() == "address"
+                    event["title"].lower() == "address"
                     and address.lower() in event["notes"].lower()
                 ):
                     results.append(r)
