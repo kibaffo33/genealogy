@@ -57,9 +57,7 @@ a1b2c3.json saved.
 Load a person
 
 ```
->>> p = genealogy.person()
-
->>> p.load("a1b2c3.json")
+>>> p = genealogy.person(load='a1b2c3')
 
 >>> p.print()
 {
@@ -93,9 +91,7 @@ Load a person
 Add life event
 
 ```
->>> p = genealogy.person()
-
->>> p.load("a1b2c3.json")
+>>> p = genealogy.person(load="a1b2c3")
 
 >>> p.add_event(
         start="1900-1-1",
@@ -150,9 +146,7 @@ a1b2c3.json saved.
 Edit data
 
 ```
->>> p = genealogy.person()
-
->>> p.load("a1b2c3.json")
+>>> p = genealogy.person(load="a1b2c3")
 
 >>> p.data['life_events][0]
 {'start': None, 'finish': None, 'title': 'Lifetime', description': None, 'notes': None, 'sources': []}
@@ -209,7 +203,7 @@ Link parent(s) and child
          parents=["g4h5i6", "m7n8o9"],
          child="a1b2c3")
 
->>> p = load("a1b2c3.json")
+>>> p = genealogy.person(load="a1b2c3")
 
 >>> p.print()
 {

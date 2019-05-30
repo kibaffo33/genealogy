@@ -29,9 +29,12 @@ template = {
 class person:
     """A person record"""
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         self.data = template
         self.filename = str()
+        ref = kwargs.get("load", None)
+        if ref:
+            self.load(ref)
 
     def create(self, **kwargs):
         self.data["id"] = str(uuid4().hex)[:6]
