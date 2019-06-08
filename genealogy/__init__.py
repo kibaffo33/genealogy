@@ -35,14 +35,14 @@ class person:
         ref = kwargs.get("load", None)
         if ref:
             self.load(ref)
-            self.id = self.data['id']
+            self.id = self.data["id"]
 
     def __str__(self):
         return json.dumps(self.data, indent=4)
 
     def create(self, **kwargs):
         self.data["id"] = str(uuid4().hex)[:6]
-        self.id = self.data['id']
+        self.id = self.data["id"]
         self.data["last_names"] = kwargs.get("ln", [])
         self.data["first_names"] = kwargs.get("fn", [])
         self.data["date_of_birth"] = kwargs.get("dob", None)
@@ -157,6 +157,7 @@ def index():
         print(record)
     print(f"{count} records.")
 
+
 def orphan_records():
     """Return a list of records which have no relatives linked."""
 
@@ -166,13 +167,14 @@ def orphan_records():
             count = 0
             p = person()
             p.load(str(file)[:-5])
-            for relative in p.data['direct_relatives']:
-                count += len(p.data['direct_relatives'][relative])
+            for relative in p.data["direct_relatives"]:
+                count += len(p.data["direct_relatives"][relative])
             if count == 0:
                 orphans.append(f"{p.data['id']} - {p.data['last_names'][0]}, {' '.join(p.data['first_names'])} dob {p.data['date_of_birth']}.")
 
     for orphan in orphans:
         print(orphan)
+
 
 def find(**kwargs):
     """Scan through .json files and return ids of matches. Query first names, last names, dob, occupation, addresses."""
@@ -209,7 +211,8 @@ def find(**kwargs):
         for r in records:
             for event in r["life_events"]:
                 if (
-                    event["title"].lower() == "occupation" or event["description"].lower() == "occupation"
+                    event["title"].lower() == "occupation"
+                    or event["description"].lower() == "occupation"
                     and occupation.lower() in event["notes"].lower()
                 ):
                     results.append(r)
