@@ -35,9 +35,11 @@ class person:
         ref = kwargs.get("load", None)
         if ref:
             self.load(ref)
+            self.id = self.data['id']
 
     def create(self, **kwargs):
         self.data["id"] = str(uuid4().hex)[:6]
+        self.id = self.data['id']
         self.data["last_names"] = kwargs.get("ln", [])
         self.data["first_names"] = kwargs.get("fn", [])
         self.data["date_of_birth"] = kwargs.get("dob", None)
