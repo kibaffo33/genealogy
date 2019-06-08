@@ -98,15 +98,15 @@ def link_child(**kwargs):
     assert os.access(f"{child}.json", os.F_OK), f"{child}.json does not exist"
 
     for p in parents:
-        ascendant = person()
-        ascendant.load(p)
-        ascendant.data["direct_relatives"]["descendants"].append(child)
-        ascendant.save()
+        ascendant = person(load=p)
+        if child not in ascendant.data["direct_relatives"]["descendants"]:
+            ascendant.data["direct_relatives"]["descendants"].append(child)
+            ascendant.save()
 
-        descendant = person()
-        descendant.load(child)
-        descendant.data["direct_relatives"]["ascendants"].append(p)
-        descendant.save()
+        descendant = person(load=child)
+        if p not in descendant.data["direct_relatives"]["ascendants"]:
+            descendant.data["direct_relatives"]["ascendants"].append(p)
+            descendant.save()
 
 
 def link_partners(partners):
