@@ -37,6 +37,9 @@ class person:
             self.load(ref)
             self.id = self.data['id']
 
+    def __str__(self):
+        return json.dumps(self.data, indent=4)
+
     def create(self, **kwargs):
         self.data["id"] = str(uuid4().hex)[:6]
         self.id = self.data['id']
@@ -60,9 +63,6 @@ class person:
         with open(self.filename, "w", encoding="utf-8") as file:
             json.dump(self.data, file, indent=4)
             print(f"{self.filename} saved.")
-
-    def print(self):
-        print(json.dumps(self.data, indent=4))
 
     def add_event(self, **kwargs):
         self.data["life_events"].append(
