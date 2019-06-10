@@ -1,7 +1,5 @@
 import json, os
 from uuid import uuid4
-import docx
-import datetime
 
 
 template = {
@@ -233,39 +231,3 @@ def find(**kwargs):
             f"{r['last_names'][0]}, {' '.join(r['first_names'])} "
             f"dob {r['date_of_birth']}."
         )
-
-
-def request_letter(person, event, output_filename):
-    """Request letter for life_event """
-
-    document = docx.Document("templates/Generic Request.docx")
-    paragraph = document.add_paragraph(datetime.date.today().strftime("%d/%m/%Y"))
-    paragraph.alignment = docx.enum.text.WD_ALIGN_PARAGRAPH.RIGHT
-    document.add_paragraph("Their address")
-    document.add_paragraph("Dear Sir or Ma'am,")
-    dob = datetime.datetime.strptime(person.data["date_of_birth"], "%Y-%m-%d").strftime(
-        "%d/%m/%Y"
-    )
-    document.add_paragraph(
-        "I am researching my ancestry and to that end submit this request for information to you."
-    )
-    main_text = document.add_paragraph(
-        f"I seek any records you may hold in relation to the {event['description']} of {person.data['first_names'][0]} {person.data['last_names'][0]} dob {dob}. "
-    )
-    if event["start"]:
-        start = datetime.datetime.strptime(event["start"], "%Y-%m-%d").strftime(
-            "%d/%m/%Y"
-        )
-        main_text.add_run(f"The earliest date I have in relation to this is {start}. ")
-    if event["finish"]:
-        finish = datetime.datetime.strptime(event["finish"], "%Y-%m-%d").strftime(
-            "%d/%m/%Y"
-        )
-        main_text.add_run(f"The last date I have in relation to this is {finish}. ")
-    document.add_paragraph(
-        "Please let me know if there is a cost I must pay for your help and how I can pay. "
-    )
-    document.add_paragraph("I am grateful for your assistance. Thank you in advance.")
-    document.add_paragraph("Yours sincerely,")
-    document.add_paragraph(document.paragraphs[0].text)
-    document.save(output_filename)
