@@ -1,8 +1,10 @@
 # genealogy
 
+[![Build Status](https://travis-ci.com/kibaffo33/genealogy.svg?branch=master)](https://travis-ci.com/kibaffo33/genealogy)
+
 A package for recording genealogy in human and machine readable .json files. The .json file format has been chosen over the gedcom file format to enable better accessability and interoperability for the recorded data. The package will create .json records in the current working directory.
 
-Dates are ISO format and require a year as the minumum. 'About' dates not accepted.
+Dates are YYYY-MM-DD format and require a year as the minimum.
 
 Requires Python 3.7+.
 
